@@ -1,5 +1,6 @@
 <?php
 namespace EmagGame\Characters;
+use Exception;
 
 class RandomInitialization implements RandomInitializationInterface {
 
@@ -7,14 +8,14 @@ class RandomInitialization implements RandomInitializationInterface {
 
         if(empty($stats))
         {
-            throw new Exception('The stats cannot be empty');
+            throw new \Exception('The stats cannot be empty');
         }
 
         foreach($stats as $key => $value)
         {
             if(empty($value[0]) || empty($value[1]))
             {
-                throw new Exception('Same values are missing!');
+                throw new \Exception('Same values are missing!');
             }
 
             $randNumber = $this->getRandomNumber($value[0], $value[1]);
@@ -36,7 +37,7 @@ class RandomInitialization implements RandomInitializationInterface {
                     $character->setLuck($randNumber);
                     break;
                 default :
-                    throw new Exception('Method not found');
+                    throw new \Exception('Method not found');
 
             }
         }

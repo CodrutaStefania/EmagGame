@@ -27,27 +27,33 @@ class BattleLogger implements LoggerInterface {
     {
         echo "ROUND: ".$currentRound."</br></br>";
         echo "Attacker: ".$battle->getAttacker()->getName()."</br>";
-        echo "Attacker Health: ".$battle->getAttacker()->getHealth()."</br>";
-
         echo "Defender: ".$battle->getDefender()->getName()."</br>";
-        echo "Defender Health: ".$battle->getDefender()->getHealth()."</br>";
+        echo "Attacker Health: ".$battle->getAttacker()->getHealth()."</br>";
+        echo "Attacker Damage: ".$battle->getDamage()."</br>";
 
         if($battle->getHeroHasRapidStrike() === true)
         {
             echo Config::HERO_NAME." used rapid strike, double damage for defender.</br>";
+            echo "Attacker new damage: ".($battle->getDamage()*2)."</br>";
         }
 
         if($battle->getDefenderWasLucky() === true)
         {
             echo "Defender was lucky, no damage.</br>";
-        }
-
-        if($battle->getHeroHasMagicShield() === true)
+            echo "Attacker new damage: 0.</br>";
+        } else
         {
-            echo  Config::HERO_NAME." used magic shield, half damage for him.</br>";
+            if($battle->getHeroHasMagicShield() === true)
+            {
+                echo  Config::HERO_NAME." used magic shield, half damage for him.</br>";
+                echo "Attacker new damage: ".($battle->getDamage()/2)."</br>";
+            }
         }
 
+        echo "Defender Health after attack: ".$battle->getDefender()->getHealth()."</br>";
         echo "</br>";
+
+
     }
 
     public function printBattleResults(BattleInterface $battle)

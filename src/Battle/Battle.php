@@ -21,6 +21,7 @@ class Battle implements BattleInterface {
     private $defenderWasLucky = false;
     private $heroHasMagicShield = false;
     private $heroHasRapidStrike = false;
+    private $damage = 0;
 
     public function __construct(ConfigInterface $config, LoggerInterface $logger)
     {
@@ -73,6 +74,11 @@ class Battle implements BattleInterface {
     public function getHeroHasRapidStrike()
     {
         return $this->heroHasRapidStrike;
+    }
+
+    public function getDamage()
+    {
+        return $this->damage;
     }
 
     public function startBattle()
@@ -151,7 +157,9 @@ class Battle implements BattleInterface {
 
     private function calculateDamage()
     {
-        return $this->attacker->getStrength() - $this->defender->getDefence();
+        $damage = $this->attacker->getStrength() - $this->defender->getDefence();
+        $this->damage = $damage;
+        return $damage;
     }
 
     private function updateDefenderHealth()
