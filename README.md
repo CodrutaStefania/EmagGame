@@ -1,5 +1,12 @@
 # EmagGame
 
-run composer install
+### Installation
+- run `composer install`
 
-open index.php
+##### Running Game
+- open index.php
+
+##### Running Test
+- run `cd vendor/bin`
+
+- run `phpunit ../../src/tests/Characters/HeroTest`
